@@ -1,0 +1,55 @@
+name: Atualizar eventos
+
+on:
+  schedule:
+    # 23h em Brasília: depois do lançamento das fotos do dia (as lojas publicam entre 13h e 16h).
+    - cron: "0 2 * * *"
+    # Segunda, 0h30 em Brasília: refaz o arquivo inteiro (tira evento que saiu da loja).
+    - cron: "30 3 * * 1"
+  workflow_dispatch:
+    inputs:
+      completo:
+        description: "Refazer o arquivo inteiro (todas as páginas)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eventos
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Buscar eventos na Foco
+        run: |
+          if [ "${{ github.event.schedule }}" = "30 3 * * 1" ] || [ "${{ inputs.completo }}" = "true" ]; then
+            npm run eventos:completo
+          else
+            npm run eventos
+          fi
+
+      - name: Commitar se mudou
+        run: |
+          if git diff --quiet data/eventos.json; then
+            echo "Nada a commitar."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/eventos.json
+          git commit -m "chore(eventos): atualiza a lista de eventos das lojas"
+          git push
