@@ -14,6 +14,7 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://bilates.vercel.app"),
   title: {
     default: "Bilates · Fotos dos seus eventos na Foco Radical",
     template: "%s · Bilates",
