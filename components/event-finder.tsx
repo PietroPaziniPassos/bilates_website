@@ -2,29 +2,16 @@
 
 import { Search, X } from "lucide-react";
 import { useDeferredValue, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { NEARBY_RADIUS_KM, cityCoords, distanceKm } from "@/lib/cidades";
-import { addDays, dayParts, fullDateLabel, monthLabel, startOfMonth, todayInBrazil } from "@/lib/dates";
+import { addDays, dayParts, fullDateLabel, monthLabel, todayInBrazil } from "@/lib/dates";
 import type { FocoEvent } from "@/lib/foco";
+import { DatePicker } from "./date-picker";
 import { EventCard } from "./event-card";
-
-type Period = "any" | "today" | "yesterday" | "7d" | "30d" | "month" | "custom";
-
-const PERIODS: { value: Period; label: string }[] = [
-  { value: "any", label: "Qualquer data" },
-  { value: "today", label: "Hoje" },
-  { value: "yesterday", label: "Ontem" },
-  { value: "7d", label: "Últimos 7 dias" },
-  { value: "30d", label: "Últimos 30 dias" },
-  { value: "month", label: "Este mês" },
-  { value: "custom", label: "Escolher datas" },
-];
+import { NEARBY, PlacePicker } from "./place-picker";
+import { useNearby } from "./use-nearby";
 
 const PAGE_SIZE = 24;
-const STRIP_DAYS = 21;
+const STRIP_DAYS = 14;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
-const NEARBY = "perto";
-const GEO_TIMEOUT_MS = 10_000;
-const GEO_MAX_AGE_MS = 10 * 60_000;
 
 const noopSubscribe = () => () => {};
 
@@ -36,34 +23,12 @@ function normalize(text: string) {
   return text.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 }
 
-function resolveRange(period: Period, from: string, to: string, today: string | null) {
-  if (period === "custom") return { from: from || null, to: to || null };
-  if (period === "any" || !today) return { from: null, to: null };
-  switch (period) {
-    case "today":
-      return { from: today, to: today };
-    case "yesterday": {
-      const y = addDays(today, -1);
-      return { from: y, to: y };
-    }
-    case "7d":
-      return { from: addDays(today, -6), to: today };
-    case "30d":
-      return { from: addDays(today, -29), to: today };
-    case "month":
-      return { from: startOfMonth(today), to: today };
-  }
-}
-
 export function EventFinder({ events }: { events: FocoEvent[] }) {
   const today = useToday();
   const [query, setQuery] = useState("");
   const [place, setPlace] = useState("");
-  const [period, setPeriod] = useState<Period>("any");
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [day, setDay] = useState("");
   const [visible, setVisible] = useState(PAGE_SIZE);
-  const [origin, setOrigin] = useState<[number, number] | null>(null);
   const hydratedFromUrl = useRef(false);
 
   const deferredQuery = useDeferredValue(query);
@@ -71,15 +36,12 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
   // O filtro vive na URL para o atleta poder mandar o link do dia para o grupo de corrida.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const p = params.get("periodo") as Period | null;
-    const de = params.get("de") ?? "";
-    const ate = params.get("ate") ?? "";
+    // `de` é o formato antigo (intervalo de datas); o link compartilhado antes da troca abre no dia inicial.
+    const dia = params.get("dia") ?? params.get("de") ?? "";
     /* eslint-disable react-hooks/set-state-in-effect -- leitura única da URL após hidratar */
     if (params.get("q")) setQuery(params.get("q")!);
     if (params.get("local")) setPlace(params.get("local")!);
-    if (p && PERIODS.some((x) => x.value === p)) setPeriod(p);
-    if (ISO_DATE.test(de)) setFrom(de);
-    if (ISO_DATE.test(ate)) setTo(ate);
+    if (ISO_DATE.test(dia)) setDay(dia);
     /* eslint-enable react-hooks/set-state-in-effect */
     hydratedFromUrl.current = true;
   }, []);
@@ -94,64 +56,22 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
     return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pt-BR"));
   }, [events]);
 
-  const nearbyPlaces = useMemo(() => {
-    if (!origin) return null;
-    const keys = new Set<string>();
-    for (const [key] of places) {
-      const [city, uf] = key.split("|");
-      const coords = cityCoords(city, uf);
-      if (coords && distanceKm(origin, coords) <= NEARBY_RADIUS_KM) keys.add(key);
-    }
-    return keys;
-  }, [origin, places]);
-
-  const nearbyCount = nearbyPlaces
-    ? places.reduce((sum, [key, count]) => sum + (nearbyPlaces.has(key) ? count : 0), 0)
-    : 0;
-
-  // O navegador pede a permissão ao abrir. O filtro só liga sozinho se houver evento no raio e o
-  // atleta não tiver chegado por um link com local escolhido.
-  useEffect(() => {
-    let active = true;
-    const dropNearby = () => {
-      if (active) setPlace((p) => (p === NEARBY ? "" : p));
-    };
-    if (!("geolocation" in navigator)) {
-      dropNearby();
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => {
-        if (!active) return;
-        const here: [number, number] = [coords.latitude, coords.longitude];
-        const hasNearby = events.some((e) => {
-          const c = cityCoords(e.city, e.uf);
-          return c !== null && distanceKm(here, c) <= NEARBY_RADIUS_KM;
-        });
-        if (!hasNearby) return dropNearby();
-        setOrigin(here);
-        setPlace((p) => (p === "" ? NEARBY : p));
-      },
-      dropNearby,
-      { enableHighAccuracy: false, maximumAge: GEO_MAX_AGE_MS, timeout: GEO_TIMEOUT_MS },
-    );
-    return () => {
-      active = false;
-    };
-  }, [events]);
+  const nearby = useNearby(places, {
+    // Ao abrir, só liga se o atleta não chegou por um link com local escolhido; no toque, liga sempre.
+    onFound: (manual) => setPlace((p) => (manual || p === "" ? NEARBY : p)),
+    onLost: () => setPlace((p) => (p === NEARBY ? "" : p)),
+  });
 
   useEffect(() => {
     if (!hydratedFromUrl.current) return;
     const params = new URLSearchParams();
     if (deferredQuery) params.set("q", deferredQuery);
     if (place) params.set("local", place);
-    if (period !== "any") params.set("periodo", period);
-    if (period === "custom" && from) params.set("de", from);
-    if (period === "custom" && to) params.set("ate", to);
+    if (day) params.set("dia", day);
     const qs = params.toString();
     if (!qs && !window.location.search) return;
     window.history.replaceState(null, "", qs ? `?${qs}#eventos` : window.location.pathname);
-  }, [deferredQuery, place, period, from, to]);
+  }, [deferredQuery, place, day]);
 
   const searchIndex = useMemo(
     () => new Map(events.map((e) => [e.id, normalize(`${e.name} ${e.city} ${e.uf}`)])),
@@ -164,15 +84,14 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
     return m;
   }, [events]);
 
-  const range = resolveRange(period, from, to, today);
+  const firstDay = events.length ? events.reduce((min, e) => (e.date < min ? e.date : min), events[0].date) : null;
 
   const filtered = useMemo(() => {
     const terms = normalize(deferredQuery).split(/\s+/).filter(Boolean);
     return events.filter((e) => {
-      if (range.from && e.date < range.from) return false;
-      if (range.to && e.date > range.to) return false;
+      if (day && e.date !== day) return false;
       if (place === NEARBY) {
-        if (nearbyPlaces && !nearbyPlaces.has(`${e.city}|${e.uf}`)) return false;
+        if (nearby.nearbyPlaces && !nearby.nearbyPlaces.has(`${e.city}|${e.uf}`)) return false;
       } else if (place && `${e.city}|${e.uf}` !== place) return false;
       if (terms.length) {
         const haystack = searchIndex.get(e.id)!;
@@ -180,7 +99,7 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
       }
       return true;
     });
-  }, [events, searchIndex, deferredQuery, place, nearbyPlaces, range.from, range.to]);
+  }, [events, searchIndex, deferredQuery, place, nearby.nearbyPlaces, day]);
 
   const shown = filtered.slice(0, visible);
   const groups: { month: string; events: FocoEvent[] }[] = [];
@@ -191,33 +110,22 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
     else groups.push({ month, events: [e] });
   }
 
-  const hasFilters = Boolean(query || place || period !== "any");
-  const selectedDay = period === "custom" && from && from === to ? from : null;
+  const hasFilters = Boolean(query || place || day);
 
   function resetPaging() {
     setVisible(PAGE_SIZE);
   }
 
-  function pickDay(day: string) {
+  function pickDay(next: string) {
     resetPaging();
-    if (selectedDay === day) {
-      setPeriod("any");
-      setFrom("");
-      setTo("");
-      return;
-    }
-    setPeriod("custom");
-    setFrom(day);
-    setTo(day);
+    setDay((current) => (current === next ? "" : next));
   }
 
   function clearAll() {
     resetPaging();
     setQuery("");
     setPlace("");
-    setPeriod("any");
-    setFrom("");
-    setTo("");
+    setDay("");
   }
 
   const stripDays = today ? Array.from({ length: STRIP_DAYS }, (_, i) => addDays(today, -i)) : null;
@@ -254,89 +162,27 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
                 className="h-12 w-full rounded-md border-2 border-ink bg-paper px-3 text-sm text-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/25 pl-11 text-base placeholder:text-graphite/80"
               />
             </div>
-            <label htmlFor="local" className="sr-only">
-              Local
-            </label>
-            <select
-              id="local"
+            <PlacePicker
               value={place}
-              onChange={(e) => {
+              places={places}
+              total={events.length}
+              nearby={nearby}
+              onChange={(next) => {
                 resetPaging();
-                setPlace(e.target.value);
+                setPlace(next);
               }}
-              className="h-12 w-full rounded-md border-2 border-ink bg-paper px-3 text-sm text-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/25"
-            >
-              <option value="">Todos os locais</option>
-              {nearbyPlaces ? (
-                <option value={NEARBY}>
-                  Até {NEARBY_RADIUS_KM} km de você ({nearbyCount})
-                </option>
-              ) : null}
-              {places.map(([key, count]) => {
-                const [city, uf] = key.split("|");
-                return (
-                  <option key={key} value={key}>
-                    {city}
-                    {uf ? `, ${uf}` : ""} ({count})
-                  </option>
-                );
-              })}
-            </select>
-            <label htmlFor="periodo" className="sr-only">
-              Data
-            </label>
-            <select
-              id="periodo"
-              value={period}
-              onChange={(e) => {
+            />
+            <DatePicker
+              value={day}
+              onChange={(next) => {
                 resetPaging();
-                const next = e.target.value as Period;
-                if (next === "custom" && period !== "custom" && today) {
-                  setFrom(range.from ?? addDays(today, -6));
-                  setTo(range.to ?? today);
-                }
-                setPeriod(next);
+                setDay(next);
               }}
-              className="h-12 w-full rounded-md border-2 border-ink bg-paper px-3 text-sm text-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/25"
-            >
-              {PERIODS.map((p) => (
-                <option key={p.value} value={p.value}>
-                  {p.label}
-                </option>
-              ))}
-            </select>
+              countByDate={countByDate}
+              firstDay={firstDay}
+              today={today}
+            />
           </div>
-
-          {period === "custom" ? (
-            <div className="mt-2 grid grid-cols-2 gap-2 md:ml-auto md:max-w-[27.5rem]">
-              <label className="flex items-center gap-2 text-sm font-medium">
-                De
-                <input
-                  type="date"
-                  value={from}
-                  max={to || today || undefined}
-                  onChange={(e) => {
-                    resetPaging();
-                    setFrom(e.target.value);
-                  }}
-                  className="h-12 w-full rounded-md border-2 border-ink bg-paper px-3 text-sm text-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/25"
-                />
-              </label>
-              <label className="flex items-center gap-2 text-sm font-medium">
-                Até
-                <input
-                  type="date"
-                  value={to}
-                  min={from || undefined}
-                  onChange={(e) => {
-                    resetPaging();
-                    setTo(e.target.value);
-                  }}
-                  className="h-12 w-full rounded-md border-2 border-ink bg-paper px-3 text-sm text-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/25"
-                />
-              </label>
-            </div>
-          ) : null}
 
           <div
             role="group"
@@ -344,18 +190,18 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
             className="-mx-4 mt-3 flex snap-x scroll-px-4 gap-1.5 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:-mx-6 sm:scroll-px-6 sm:px-6 lg:-mx-10 lg:scroll-px-10 lg:px-10"
           >
             {stripDays
-              ? stripDays.map((day, i) => {
-                  const count = countByDate.get(day) ?? 0;
-                  const parts = dayParts(day);
+              ? stripDays.map((stripDay, i) => {
+                  const count = countByDate.get(stripDay) ?? 0;
+                  const parts = dayParts(stripDay);
                   const label = i === 0 ? "hoje" : i === 1 ? "ontem" : parts.weekday;
                   return (
                     <button
-                      key={day}
+                      key={stripDay}
                       type="button"
                       disabled={count === 0}
-                      aria-pressed={selectedDay === day}
-                      aria-label={`${fullDateLabel(day)}: ${count === 0 ? "sem eventos" : count === 1 ? "1 evento" : `${count} eventos`}`}
-                      onClick={() => pickDay(day)}
+                      aria-pressed={day === stripDay}
+                      aria-label={`${fullDateLabel(stripDay)}: ${count === 0 ? "sem eventos" : count === 1 ? "1 evento" : `${count} eventos`}`}
+                      onClick={() => pickDay(stripDay)}
                       className="flex h-10 shrink-0 snap-start items-baseline gap-1.5 rounded-full border-2 border-ink/15 px-3 pt-1.5 transition-colors duration-150 hover:border-ink disabled:cursor-not-allowed disabled:border-transparent disabled:opacity-35 aria-pressed:border-ink aria-pressed:bg-ink aria-pressed:text-yellow"
                     >
                       <span className="text-[0.7rem] font-semibold uppercase tracking-wide">{label}</span>

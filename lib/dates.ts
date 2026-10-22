@@ -32,6 +32,17 @@ const fullFmt = new Intl.DateTimeFormat("pt-BR", {
   timeZone: "UTC",
 });
 
+const shortFmt = new Intl.DateTimeFormat("pt-BR", {
+  weekday: "short",
+  day: "numeric",
+  month: "short",
+  timeZone: "UTC",
+});
+
+export function shortDateLabel(iso: string) {
+  return shortFmt.format(toDate(iso)).replaceAll(".", "");
+}
+
 export function dayParts(iso: string) {
   const d = toDate(iso);
   return {
