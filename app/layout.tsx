@@ -17,7 +17,7 @@ const archivo = Archivo({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Fotos de treinos em Camburi na Foco Radical · Bilates",
+    default: "Fotos de treinos e corridas na Foco Radical",
     template: "%s · Bilates",
   },
   description:
