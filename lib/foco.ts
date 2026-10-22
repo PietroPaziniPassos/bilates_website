@@ -1,5 +1,5 @@
 import snapshot from "@/data/eventos.json";
-import { type EventsFile, type FocoEvent, REQUEST_GAP_MS, fetchStorePage, mergeStoreItems, sleep, sortEvents } from "./foco-core";
+import { type EventsFile, type FocoEvent, REQUEST_GAP_MS, borrowTrainingCovers, fetchStorePage, mergeStoreItems, sleep, sortEvents } from "./foco-core";
 import { STORES } from "./site";
 
 export type { CoverKind, FocoEvent } from "./foco-core";
@@ -26,5 +26,5 @@ export async function getCatalog(): Promise<{ events: FocoEvent[] }> {
     }
   }
 
-  return { events: sortEvents(byId.values()) };
+  return { events: borrowTrainingCovers(sortEvents(byId.values())) };
 }

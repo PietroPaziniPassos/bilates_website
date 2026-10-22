@@ -119,3 +119,26 @@ export function mergeStoreItems(byId: Map<number, FocoEvent>, store: StoreKey, i
 export function sortEvents(events: Iterable<FocoEvent>) {
   return [...events].sort((a, b) => b.date.localeCompare(a.date) || a.name.localeCompare(b.name, "pt-BR"));
 }
+
+const ORLA_TRAINING = /^TREINOS?\b.*ORLA DE CAMBURI/i;
+
+// O treino da Orla costuma ser publicado com o ícone genérico e ganha o banner do dia só horas
+// depois. Até lá, vale o banner do treino anterior no mesmo dia da semana e turno (manhã e noite
+// têm banners diferentes). O nome varia ("TREINO NOTURNO", "TARDE E NOITE", "TARDE NOITE").
+function trainingSlot(e: FocoEvent) {
+  if (!ORLA_TRAINING.test(e.name)) return null;
+  const weekday = new Date(`${e.date}T12:00:00Z`).getUTCDay();
+  return `${weekday}:${/NOTURN|NOITE/i.test(e.name) ? "noite" : "manha"}`;
+}
+
+export function borrowTrainingCovers(events: FocoEvent[]) {
+  const lastPhoto = new Map<string, NonNullable<FocoEvent["cover"]>>();
+  const oldestFirst = [...events].sort((a, b) => a.date.localeCompare(b.date));
+  for (const e of oldestFirst) {
+    const slot = trainingSlot(e);
+    if (!slot) continue;
+    if (e.cover?.kind === "photo") lastPhoto.set(slot, e.cover);
+    else if (lastPhoto.has(slot)) e.cover = lastPhoto.get(slot)!;
+  }
+  return events;
+}
