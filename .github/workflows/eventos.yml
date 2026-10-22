@@ -2,8 +2,8 @@ name: Atualizar eventos
 
 on:
   schedule:
-    # 23h em Brasília: depois do lançamento das fotos do dia (as lojas publicam entre 13h e 16h).
-    - cron: "0 2 * * *"
+    # 12h20 em Brasília. Minuto fora da hora cheia porque o GitHub atrasa muito o cron das :00.
+    - cron: "20 15 * * *"
     # Segunda, 0h30 em Brasília: refaz o arquivo inteiro (tira evento que saiu da loja).
     - cron: "30 3 * * 1"
   workflow_dispatch:
@@ -30,9 +30,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          cache: npm
 
-      - run: npm ci
+      # O script só usa zod e tsx: npm ci do projeto inteiro (Next, SWC, ESLint) levava 5 min.
+      # Versões lidas do lockfile, instaladas fora do repo e ligadas por symlink.
+      - name: Instalar dependências do script
+        run: |
+          v() { node -p "require('./package-lock.json').packages['node_modules/$1'].version"; }
+          npm install --no-save --no-package-lock --no-audit --no-fund --prefix "$RUNNER_TEMP/deps" "zod@$(v zod)" "tsx@$(v tsx)"
+          ln -s "$RUNNER_TEMP/deps/node_modules" node_modules
 
       - name: Buscar eventos na Foco
         run: |
