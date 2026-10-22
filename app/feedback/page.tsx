@@ -6,6 +6,7 @@ import { CONTACT } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Feedback das fotos",
+  robots: { index: false },
 };
 
 export default function FeedbackPage() {

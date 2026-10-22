@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
 import { Contact, Stores } from "@/components/sections";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Contato",
-  description: "Instagram, e-mail e as lojas do Marcos Bilate na Foco Radical.",
-};
+  description: "Instagram, e-mail e as lojas na Foco Radical do fotógrafo dos treinos na Praia de Camburi.",
+  path: "/contato",
+});
 
 export default function ContactPage() {
   return (

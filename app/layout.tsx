@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Big_Shoulders } from "next/font/google";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
+import { KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
 const bigShoulders = Big_Shoulders({
@@ -14,20 +15,16 @@ const archivo = Archivo({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bilates.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "Bilates · Fotos dos seus eventos na Foco Radical",
+    default: "Fotos de treinos em Camburi na Foco Radical · Bilates",
     template: "%s · Bilates",
   },
   description:
-    "Ache suas fotos de corrida, treino e triathlon por Marcos Bilate. Todos os eventos das lojas na Foco Radical, com busca por data e local.",
-  openGraph: {
-    title: "Marcos Bilate · Ache suas fotos",
-    description: "Todos os eventos das lojas do Marcos Bilate na Foco Radical, com busca por data e local.",
-    images: ["/orla-de-camburi.jpg"],
-    locale: "pt_BR",
-    type: "website",
-  },
+    "Ache suas fotos de treino e corrida na Praia de Camburi, em Vitória (ES). Todos os eventos na Foco Radical, com busca por dia e local.",
+  applicationName: SITE_NAME,
+  keywords: KEYWORDS,
+  formatDetection: { telephone: false },
 };
 
 export const viewport: Viewport = {
