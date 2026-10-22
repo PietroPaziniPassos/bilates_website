@@ -1,7 +1,7 @@
 export const STORES = [
   { key: "bilate", label: "Marcos Bilate", host: "bilate.focoradical.com.br" },
-  { key: "mblt", label: "Marcos Bilate 2", host: "mblt.focoradical.com.br" },
   { key: "ppbi", label: "Pietro Bilate", host: "ppbi.focoradical.com.br" },
+  { key: "mblt", label: "Marcos Bilate 2", host: "mblt.focoradical.com.br" },
 ] as const;
 
 export type StoreKey = (typeof STORES)[number]["key"];
