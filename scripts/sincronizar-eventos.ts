@@ -12,6 +12,7 @@ import {
   sleep,
   sortEvents,
 } from "../lib/foco-core";
+import { cityCoords } from "../lib/cidades";
 import { STORES } from "../lib/site";
 
 const FILE = path.join(process.cwd(), "data", "eventos.json");
@@ -46,6 +47,10 @@ async function main() {
   }
 
   const eventos = sortEvents(byId.values());
+  const semCoordenada = new Set(eventos.filter((e) => e.city && !cityCoords(e.city, e.uf)).map((e) => `${e.city}, ${e.uf}`));
+  if (semCoordenada.size) {
+    console.warn(`::warning::Cidade sem coordenada em lib/cidades.ts (fora do "Perto de você"): ${[...semCoordenada].join("; ")}`);
+  }
   const before = JSON.stringify(sortEvents(current));
   if (JSON.stringify(eventos) === before) {
     console.log(`Sem mudança (${eventos.length} eventos).`);

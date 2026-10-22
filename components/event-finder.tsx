@@ -2,6 +2,7 @@
 
 import { Search, X } from "lucide-react";
 import { useDeferredValue, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { NEARBY_RADIUS_KM, cityCoords, distanceKm } from "@/lib/cidades";
 import { addDays, dayParts, fullDateLabel, monthLabel, startOfMonth, todayInBrazil } from "@/lib/dates";
 import type { FocoEvent } from "@/lib/foco";
 import { EventCard } from "./event-card";
@@ -21,6 +22,8 @@ const PERIODS: { value: Period; label: string }[] = [
 const PAGE_SIZE = 24;
 const STRIP_DAYS = 21;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+const NEARBY = "perto";
+const GEO_TIMEOUT_MS = 4000;
 
 const noopSubscribe = () => () => {};
 
@@ -59,6 +62,7 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [visible, setVisible] = useState(PAGE_SIZE);
+  const [origin, setOrigin] = useState<[number, number] | null>(null);
   const hydratedFromUrl = useRef(false);
 
   const deferredQuery = useDeferredValue(query);
@@ -79,6 +83,56 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
     hydratedFromUrl.current = true;
   }, []);
 
+  const places = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const e of events) {
+      if (!e.city) continue;
+      const key = `${e.city}|${e.uf}`;
+      counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pt-BR"));
+  }, [events]);
+
+  const nearbyPlaces = useMemo(() => {
+    if (!origin) return null;
+    const keys = new Set<string>();
+    for (const [key] of places) {
+      const [city, uf] = key.split("|");
+      const coords = cityCoords(city, uf);
+      if (coords && distanceKm(origin, coords) <= NEARBY_RADIUS_KM) keys.add(key);
+    }
+    return keys;
+  }, [origin, places]);
+
+  const nearbyCount = nearbyPlaces
+    ? places.reduce((sum, [key, count]) => sum + (nearbyPlaces.has(key) ? count : 0), 0)
+    : 0;
+
+  // Posição pelo IP: sem pop-up de permissão. Só liga o filtro sozinho se houver evento no raio
+  // e o atleta não tiver chegado por um link com local escolhido.
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("/api/local", { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(GEO_TIMEOUT_MS)]) })
+      .then((res) => (res.ok ? (res.json() as Promise<{ lat: number; lon: number } | null>) : null))
+      .then((geo) => {
+        const here: [number, number] | null = geo ? [geo.lat, geo.lon] : null;
+        const hasNearby =
+          here !== null &&
+          events.some((e) => {
+            const coords = cityCoords(e.city, e.uf);
+            return coords !== null && distanceKm(here, coords) <= NEARBY_RADIUS_KM;
+          });
+        if (hasNearby) {
+          setOrigin(here);
+          setPlace((p) => (p === "" ? NEARBY : p));
+        } else {
+          setPlace((p) => (p === NEARBY ? "" : p));
+        }
+      })
+      .catch(() => setPlace((p) => (p === NEARBY ? "" : p)));
+    return () => controller.abort();
+  }, [events]);
+
   useEffect(() => {
     if (!hydratedFromUrl.current) return;
     const params = new URLSearchParams();
@@ -97,16 +151,6 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
     [events],
   );
 
-  const places = useMemo(() => {
-    const counts = new Map<string, number>();
-    for (const e of events) {
-      if (!e.city) continue;
-      const key = `${e.city}|${e.uf}`;
-      counts.set(key, (counts.get(key) ?? 0) + 1);
-    }
-    return [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "pt-BR"));
-  }, [events]);
-
   const countByDate = useMemo(() => {
     const m = new Map<string, number>();
     for (const e of events) m.set(e.date, (m.get(e.date) ?? 0) + 1);
@@ -120,14 +164,16 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
     return events.filter((e) => {
       if (range.from && e.date < range.from) return false;
       if (range.to && e.date > range.to) return false;
-      if (place && `${e.city}|${e.uf}` !== place) return false;
+      if (place === NEARBY) {
+        if (nearbyPlaces && !nearbyPlaces.has(`${e.city}|${e.uf}`)) return false;
+      } else if (place && `${e.city}|${e.uf}` !== place) return false;
       if (terms.length) {
         const haystack = searchIndex.get(e.id)!;
         if (!terms.every((t) => haystack.includes(t))) return false;
       }
       return true;
     });
-  }, [events, searchIndex, deferredQuery, place, range.from, range.to]);
+  }, [events, searchIndex, deferredQuery, place, nearbyPlaces, range.from, range.to]);
 
   const shown = filtered.slice(0, visible);
   const groups: { month: string; events: FocoEvent[] }[] = [];
@@ -214,6 +260,11 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
               className="h-12 w-full rounded-md border-2 border-ink bg-paper px-3 text-sm text-ink focus:outline-none focus-visible:ring-4 focus-visible:ring-ink/25"
             >
               <option value="">Todos os locais</option>
+              {nearbyPlaces ? (
+                <option value={NEARBY}>
+                  Até {NEARBY_RADIUS_KM} km de você ({nearbyCount})
+                </option>
+              ) : null}
               {places.map(([key, count]) => {
                 const [city, uf] = key.split("|");
                 return (
