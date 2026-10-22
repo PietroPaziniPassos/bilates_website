@@ -64,10 +64,9 @@ const STEPS = [
 ];
 
 const RESOLUTIONS = [
-  { name: "Baixa", px: "1.500 px", use: "Redes sociais e porta-retrato" },
-  { name: "Média", px: "2.700 px", use: "Impressão até 20 × 30 cm" },
-  { name: "Alta", px: "3.450 px", use: "Até 30 × 45 cm, ou para recortar" },
-  { name: "Premium", px: "4.500 px", use: "Pôster até 50 × 33 cm" },
+  { name: "Baixa", px: "1.500 px" },
+  { name: "Média", px: "2.700 px" },
+  { name: "Alta", px: "3.450 px" },
 ];
 
 export function HowToBuy() {
@@ -88,14 +87,13 @@ export function HowToBuy() {
 
           <div className="mt-10 max-w-md">
             <h2 className="font-display text-lg font-extrabold uppercase tracking-wide text-paper">
-              Qual resolução comprar
+              Resoluções
             </h2>
             <dl className="mt-3 divide-y divide-paper/15 border-y border-paper/15">
               {RESOLUTIONS.map((r) => (
-                <div key={r.name} className="grid grid-cols-[5.5rem_4.5rem_1fr] items-baseline gap-2 py-2.5 text-sm">
+                <div key={r.name} className="grid grid-cols-[5.5rem_1fr] items-baseline gap-2 py-2.5 text-sm">
                   <dt className="font-semibold text-paper">{r.name}</dt>
                   <dd className="tabular-nums text-paper/60">{r.px}</dd>
-                  <dd className="text-paper/85">{r.use}</dd>
                 </div>
               ))}
             </dl>
