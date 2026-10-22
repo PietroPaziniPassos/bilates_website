@@ -49,7 +49,7 @@ async function main() {
   const eventos = sortEvents(byId.values());
   const semCoordenada = new Set(eventos.filter((e) => e.city && !cityCoords(e.city, e.uf)).map((e) => `${e.city}, ${e.uf}`));
   if (semCoordenada.size) {
-    console.warn(`::warning::Cidade sem coordenada em lib/cidades.ts (fora do "Perto de você"): ${[...semCoordenada].join("; ")}`);
+    console.warn(`::warning::Cidade sem coordenada em lib/cidades.ts (fora do "Até 50 km de você"): ${[...semCoordenada].join("; ")}`);
   }
   const before = JSON.stringify(sortEvents(current));
   if (JSON.stringify(eventos) === before) {

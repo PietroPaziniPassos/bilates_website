@@ -1,5 +1,5 @@
 // Sede de cada município do catálogo. O evento da Foco só traz cidade e UF; cidade nova que o cron
-// trouxer sem entrada aqui fica fora do filtro "Perto de você" (o script de eventos avisa no log).
+// trouxer sem entrada aqui fica fora do filtro "Até 50 km de você" (o script de eventos avisa no log).
 const COORDS: Record<string, [number, number]> = {
   "vitoria|ES": [-20.3155, -40.3128],
   "vila velha|ES": [-20.3297, -40.2925],

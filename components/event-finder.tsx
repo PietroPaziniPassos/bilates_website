@@ -23,7 +23,8 @@ const PAGE_SIZE = 24;
 const STRIP_DAYS = 21;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 const NEARBY = "perto";
-const GEO_TIMEOUT_MS = 4000;
+const GEO_TIMEOUT_MS = 10_000;
+const GEO_MAX_AGE_MS = 10 * 60_000;
 
 const noopSubscribe = () => () => {};
 
@@ -108,29 +109,35 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
     ? places.reduce((sum, [key, count]) => sum + (nearbyPlaces.has(key) ? count : 0), 0)
     : 0;
 
-  // Posição pelo IP: sem pop-up de permissão. Só liga o filtro sozinho se houver evento no raio
-  // e o atleta não tiver chegado por um link com local escolhido.
+  // O navegador pede a permissão ao abrir. O filtro só liga sozinho se houver evento no raio e o
+  // atleta não tiver chegado por um link com local escolhido.
   useEffect(() => {
-    const controller = new AbortController();
-    fetch("/api/local", { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(GEO_TIMEOUT_MS)]) })
-      .then((res) => (res.ok ? (res.json() as Promise<{ lat: number; lon: number } | null>) : null))
-      .then((geo) => {
-        const here: [number, number] | null = geo ? [geo.lat, geo.lon] : null;
-        const hasNearby =
-          here !== null &&
-          events.some((e) => {
-            const coords = cityCoords(e.city, e.uf);
-            return coords !== null && distanceKm(here, coords) <= NEARBY_RADIUS_KM;
-          });
-        if (hasNearby) {
-          setOrigin(here);
-          setPlace((p) => (p === "" ? NEARBY : p));
-        } else {
-          setPlace((p) => (p === NEARBY ? "" : p));
-        }
-      })
-      .catch(() => setPlace((p) => (p === NEARBY ? "" : p)));
-    return () => controller.abort();
+    let active = true;
+    const dropNearby = () => {
+      if (active) setPlace((p) => (p === NEARBY ? "" : p));
+    };
+    if (!("geolocation" in navigator)) {
+      dropNearby();
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => {
+        if (!active) return;
+        const here: [number, number] = [coords.latitude, coords.longitude];
+        const hasNearby = events.some((e) => {
+          const c = cityCoords(e.city, e.uf);
+          return c !== null && distanceKm(here, c) <= NEARBY_RADIUS_KM;
+        });
+        if (!hasNearby) return dropNearby();
+        setOrigin(here);
+        setPlace((p) => (p === "" ? NEARBY : p));
+      },
+      dropNearby,
+      { enableHighAccuracy: false, maximumAge: GEO_MAX_AGE_MS, timeout: GEO_TIMEOUT_MS },
+    );
+    return () => {
+      active = false;
+    };
   }, [events]);
 
   useEffect(() => {
