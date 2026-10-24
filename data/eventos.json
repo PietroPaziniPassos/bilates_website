@@ -1,6 +1,34 @@
 {
- "geradoEm": "2026-10-23T19:19:43.701Z",
+ "geradoEm": "2026-10-24T18:13:07.820Z",
  "eventos": [
+  {
+   "id": 296372,
+   "name": "TREINOS ORLA DE CAMBURI - SÁBADO 24-10-2026 - MANHÃ",
+   "path": "20261024-treinos-orla-de-camburi-sabado-24-10-2026-manha-vitoria-15796",
+   "date": "2026-10-24",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 414054,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261024143207SABADO-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "ppbi"
+  },
+  {
+   "id": 297835,
+   "name": "ÚLTIMO ATO BORA LULA BOTA PRA VIRAR ES",
+   "path": "20261024-ultimo-ato-bora-lula-bota-pra-virar-es-vitoria-11390",
+   "date": "2026-10-24",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 0,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20250210145729Salvamento-aqutico.svg",
+    "kind": "icon"
+   },
+   "store": "bilate"
+  },
   {
    "id": 296370,
    "name": "TREINOS ORLA DE CAMBURI - SEXTA 23-10-2026 - MANHÃ",
