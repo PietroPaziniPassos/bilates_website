@@ -1,6 +1,20 @@
 {
- "geradoEm": "2026-10-24T18:13:07.820Z",
+ "geradoEm": "2026-10-25T18:27:06.327Z",
  "eventos": [
+  {
+   "id": 296375,
+   "name": "TREINOS ORLA DE CAMBURI - DOMINGO 25-10-2026 - MANHÃ",
+   "path": "20261025-treinos-orla-de-camburi-domingo-25-10-2026-manha-vitoria-15796",
+   "date": "2026-10-25",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 375191,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261025144124DOMINGO-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "ppbi"
+  },
   {
    "id": 296372,
    "name": "TREINOS ORLA DE CAMBURI - SÁBADO 24-10-2026 - MANHÃ",
@@ -8,7 +22,7 @@
    "date": "2026-10-24",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 414054,
+   "photos": 417134,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261024143207SABADO-MANHA.png",
     "kind": "photo"
@@ -22,10 +36,10 @@
    "date": "2026-10-24",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 0,
+   "photos": 35099,
    "cover": {
-    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20250210145729Salvamento-aqutico.svg",
-    "kind": "icon"
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261024205838SAVE20261024205625.jpg",
+    "kind": "photo"
    },
    "store": "bilate"
   },
