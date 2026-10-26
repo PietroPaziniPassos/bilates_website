@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-10-26T09:19:24.774Z",
+ "geradoEm": "2026-10-26T20:34:21.495Z",
  "eventos": [
   {
    "id": 286209,
@@ -8,10 +8,10 @@
    "date": "2026-10-26",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 0,
+   "photos": 33182,
    "cover": {
-    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
-    "kind": "icon"
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261026105206evento-de-segunda.jpeg",
+    "kind": "photo"
    },
    "store": "bilate"
   },
@@ -24,8 +24,8 @@
    "uf": "ES",
    "photos": 917,
    "cover": {
-    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
-    "kind": "icon"
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261026105131Evento-Domingo.jpeg",
+    "kind": "photo"
    },
    "store": "bilate"
   },
