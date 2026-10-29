@@ -1,6 +1,20 @@
 {
- "geradoEm": "2026-10-28T20:20:54.611Z",
+ "geradoEm": "2026-10-29T20:21:03.722Z",
  "eventos": [
+  {
+   "id": 298984,
+   "name": "TREINOS ORLA DE CAMBURI - QUINTA 29-10-2026 - MANHÃ",
+   "path": "20261029-treinos-orla-de-camburi-quinta-29-10-2026-manha-vitoria-15796",
+   "date": "2026-10-29",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 209320,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261029120723QUINTA-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 298981,
    "name": "TREINOS ORLA DE CAMBURI - QUARTA 28-10-2026 - MANHÃ",
