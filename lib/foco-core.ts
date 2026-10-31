@@ -41,8 +41,8 @@ type Competition = z.infer<typeof Competition>;
 
 const TEST_EVENT = /\bEVENTO TESTE\b/i;
 
-// Ocultado a pedido, até ser liberado de novo: Bloquinho do 22, sábado 17-10-2026.
-const HIDDEN_IDS = new Set([295291]);
+// Ocultados a pedido, até serem liberados de novo: Bloquinho do 22 (17-10-2026) e Último Ato Bora Lula (24-10-2026).
+const HIDDEN_IDS = new Set([295291, 297835]);
 
 // O Cloudflare da Foco devolve 429 a qualquer rajada vinda do mesmo IP. 1,2 s entre chamadas é o
 // ritmo que o Radar já usa contra o mesmo portal, e o cooldown depois de um 429 passa de 15 s.
