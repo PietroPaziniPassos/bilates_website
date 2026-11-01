@@ -1,6 +1,48 @@
 {
- "geradoEm": "2026-10-31T19:21:45.947Z",
+ "geradoEm": "2026-11-01T19:44:56.053Z",
  "eventos": [
+  {
+   "id": 180119,
+   "name": "MARATONA PEDRA AZUL 2026 - DOMINGOS MARTINS",
+   "path": "20261101-maratona-pedra-azul-2026-domingos-martins-domingos-martins-620",
+   "date": "2026-11-01",
+   "city": "Domingos Martins",
+   "uf": "ES",
+   "photos": 354910,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/logos/20261026205332MARATONA-MPA.png",
+    "kind": "logo"
+   },
+   "store": "ppbi"
+  },
+  {
+   "id": 298992,
+   "name": "TREINOS ORLA DE CAMBURI - DOMINGO 01-11-2026 - MANHÃ",
+   "path": "20261101-treinos-orla-de-camburi-domingo-01-11-2026-manha-vitoria-15796",
+   "date": "2026-11-01",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 417153,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261101132932DOMINGO-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 298991,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - SÁBADO 31-10-2026 - TARDE E NOITE",
+   "path": "20261031-treinos-noturno-orla-de-camburi-sabado-31-10-2026-tarde-e-noite-vitoria-15796",
+   "date": "2026-10-31",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 12166,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
+    "kind": "icon"
+   },
+   "store": "bilate"
+  },
   {
    "id": 298990,
    "name": "TREINOS ORLA DE CAMBURI - SÁBADO 31-10-2026 - MANHÃ",
