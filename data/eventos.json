@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-11-02T11:38:34.522Z",
+ "geradoEm": "2026-11-02T23:08:51.043Z",
  "eventos": [
   {
    "id": 300717,
@@ -8,12 +8,12 @@
    "date": "2026-11-02",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 0,
+   "photos": 114239,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
     "kind": "icon"
    },
-   "store": "bilate"
+   "store": "ppbi"
   },
   {
    "id": 180119,
