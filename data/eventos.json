@@ -1,6 +1,20 @@
 {
- "geradoEm": "2026-11-01T19:44:56.053Z",
+ "geradoEm": "2026-11-02T11:38:34.522Z",
  "eventos": [
+  {
+   "id": 300717,
+   "name": "TREINOS ORLA DE CAMBURI - SEGUNDA 02-11-2026 - MANHÃ",
+   "path": "20261102-treinos-orla-de-camburi-segunda-02-11-2026-manha-vitoria-21507",
+   "date": "2026-11-02",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 0,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
+    "kind": "icon"
+   },
+   "store": "bilate"
+  },
   {
    "id": 180119,
    "name": "MARATONA PEDRA AZUL 2026 - DOMINGOS MARTINS",
@@ -8,12 +22,26 @@
    "date": "2026-11-01",
    "city": "Domingos Martins",
    "uf": "ES",
-   "photos": 354910,
+   "photos": 395458,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/logos/20261026205332MARATONA-MPA.png",
     "kind": "logo"
    },
    "store": "ppbi"
+  },
+  {
+   "id": 300726,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - DOMINGO 01-11-2026- TARDE E NOITE",
+   "path": "20261101-treinos-noturno-orla-de-camburi-domingo-01-11-2026-tarde-e-noite-vitoria-21507",
+   "date": "2026-11-01",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 2271,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
+    "kind": "icon"
+   },
+   "store": "bilate"
   },
   {
    "id": 298992,
@@ -22,7 +50,7 @@
    "date": "2026-11-01",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 417153,
+   "photos": 448310,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261101132932DOMINGO-MANHA.png",
     "kind": "photo"
