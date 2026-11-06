@@ -1,6 +1,20 @@
 {
- "geradoEm": "2026-11-05T21:29:10.072Z",
+ "geradoEm": "2026-11-06T20:56:28.744Z",
  "eventos": [
+  {
+   "id": 301856,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - QUINTA 05-11-2026 - TARDE E NOITE",
+   "path": "20261105-treinos-noturno-orla-de-camburi-quinta-05-11-2026-tarde-e-noite-vitoria-15796",
+   "date": "2026-11-05",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 63978,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261106105317QUINTA-NOITE.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 301855,
    "name": "TREINOS ORLA DE CAMBURI - QUINTA 05-11-2026 - MANHÃ",
