@@ -1,6 +1,48 @@
 {
- "geradoEm": "2026-11-06T20:56:28.744Z",
+ "geradoEm": "2026-11-07T19:28:43.360Z",
  "eventos": [
+  {
+   "id": 294492,
+   "name": "CORRENDO POR AÍ - VILA VELHA",
+   "path": "20261107-correndo-por-ai-vila-velha-vila-velha-17215",
+   "date": "2026-11-07",
+   "city": "Vila Velha",
+   "uf": "ES",
+   "photos": 16110,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/logos/20261021184533Correndo-por-Ai-vetorial.png",
+    "kind": "logo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 300218,
+   "name": "TREINO ORLA DE VILA VELHA - SÁBADO  07-11-26 - MANHÃ",
+   "path": "20261107-treino-orla-de-vila-velha-sabado-07-11-26-manha-vila-velha-1062",
+   "date": "2026-11-07",
+   "city": "Vila Velha",
+   "uf": "ES",
+   "photos": 132257,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261107114951PHOTO-2026-08-17-13-00-55.jpg",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 301859,
+   "name": "TREINOS ORLA DE CAMBURI - SÁBADO 07-11-2026 - MANHÃ",
+   "path": "20261107-treinos-orla-de-camburi-sabado-06-11-2026-manha-vitoria-15796",
+   "date": "2026-11-07",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 370031,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261107122701SABADO-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 301856,
    "name": "TREINOS NOTURNO ORLA DE CAMBURI - QUINTA 05-11-2026 - TARDE E NOITE",
