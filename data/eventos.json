@@ -1,6 +1,34 @@
 {
- "geradoEm": "2026-11-07T19:28:43.360Z",
+ "geradoEm": "2026-11-08T19:44:26.027Z",
  "eventos": [
+  {
+   "id": 279709,
+   "name": "2ª CORRIDA PADARIA DARÉ - 2026",
+   "path": "20261108-2a-corrida-padaria-dare-2026-piuma-10268",
+   "date": "2026-11-08",
+   "city": "Piúma",
+   "uf": "ES",
+   "photos": 90796,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261029190039dare2corridabanner.jpg",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 301861,
+   "name": "TREINOS ORLA DE CAMBURI - DOMINGO 08-11-2026 - MANHÃ",
+   "path": "20261108-treinos-orla-de-camburi-domingo-08-11-2026-manha-vitoria-15796",
+   "date": "2026-11-08",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 383692,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261108144918DOMINGO-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "ppbi"
+  },
   {
    "id": 294492,
    "name": "CORRENDO POR AÍ - VILA VELHA",
@@ -8,7 +36,7 @@
    "date": "2026-11-07",
    "city": "Vila Velha",
    "uf": "ES",
-   "photos": 16110,
+   "photos": 16106,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/logos/20261021184533Correndo-por-Ai-vetorial.png",
     "kind": "logo"
@@ -26,6 +54,20 @@
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261107114951PHOTO-2026-08-17-13-00-55.jpg",
     "kind": "photo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 301860,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - SÁBADO 07-11-2026 - TARDE E NOITE",
+   "path": "20261107-treinos-noturno-orla-de-camburi-sabado-06-11-2026-tarde-e-noite-vitoria-15796",
+   "date": "2026-11-07",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 6924,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
+    "kind": "icon"
    },
    "store": "bilate"
   },
