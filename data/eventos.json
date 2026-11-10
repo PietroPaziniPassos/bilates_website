@@ -1,6 +1,20 @@
 {
- "geradoEm": "2026-11-09T12:00:52.591Z",
+ "geradoEm": "2026-11-10T21:20:32.166Z",
  "eventos": [
+  {
+   "id": 304590,
+   "name": "TREINOS ORLA DE CAMBURI - TERÇA 10-11-2026 - MANHÃ",
+   "path": "20261110-treinos-orla-de-camburi-terca-10-11-2026-manha-vitoria-15796",
+   "date": "2026-11-10",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 95104,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261110111753IMG2010.jpeg",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 279709,
    "name": "2ª CORRIDA PADARIA DARÉ - 2026",
