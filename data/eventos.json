@@ -1,6 +1,34 @@
 {
- "geradoEm": "2026-11-10T21:20:32.166Z",
+ "geradoEm": "2026-11-11T22:00:16.791Z",
  "eventos": [
+  {
+   "id": 304632,
+   "name": "ENTREGA DE KITS CORRIDA DA MAIOR TORCIDA 2026 - VITÓRIA",
+   "path": "20261111-entrega-de-kits-corrida-da-maior-torcida-2026-vitoria-vitoria-15884",
+   "date": "2026-11-11",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 2312,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261109164406Baner-Entrega-de-kits.jpeg",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 304592,
+   "name": "TREINOS ORLA DE CAMBURI - QUARTA 11-11-2026 - MANHÃ",
+   "path": "20261111-treinos-orla-de-camburi-quarta-11-11-2026-manha-vitoria-15796",
+   "date": "2026-11-11",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 84384,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261111114343QUARTA-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 304590,
    "name": "TREINOS ORLA DE CAMBURI - TERÇA 10-11-2026 - MANHÃ",
