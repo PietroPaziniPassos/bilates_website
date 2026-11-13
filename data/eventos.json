@@ -1,6 +1,34 @@
 {
- "geradoEm": "2026-11-12T21:51:28.548Z",
+ "geradoEm": "2026-11-13T21:26:59.025Z",
  "eventos": [
+  {
+   "id": 304596,
+   "name": "TREINOS ORLA DE CAMBURI - SEXTA 13-11-2026 - MANHÃ",
+   "path": "20261113-treinos-orla-de-camburi-sexta-13-11-2026-manha-vitoria-15796",
+   "date": "2026-11-13",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 131770,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261113120103SEXTA-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 304595,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - QUINTA 12-11-2026 - TARDE E NOITE",
+   "path": "20261112-treinos-noturno-orla-de-camburi-quinta-12-11-2026-tarde-e-noite-vitoria-15796",
+   "date": "2026-11-12",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 56403,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261112202859QUINTA-NOITE.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 304594,
    "name": "TREINOS ORLA DE CAMBURI - QUINTA 12-11-2026 - MANHÃ",
@@ -22,7 +50,7 @@
    "date": "2026-11-11",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 3692,
+   "photos": 5411,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261109164406Baner-Entrega-de-kits.jpeg",
     "kind": "photo"
