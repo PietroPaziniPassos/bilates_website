@@ -1,6 +1,48 @@
 {
- "geradoEm": "2026-11-14T19:57:36.071Z",
+ "geradoEm": "2026-11-15T20:25:27.161Z",
  "eventos": [
+  {
+   "id": 182736,
+   "name": "CORRIDA DA MAIOR TORCIDA 2026 - VITÓRIA",
+   "path": "20261115-corrida-da-maior-torcida-2026-vitoria-vitoria-620",
+   "date": "2026-11-15",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 1163157,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/logos/20261109131041182736.png",
+    "kind": "logo"
+   },
+   "store": "ppbi"
+  },
+  {
+   "id": 300729,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - DOMINGO 15-11-2026- TARDE E NOITE",
+   "path": "20261115-treinos-noturno-orla-de-camburi-domingo-15-11-2026-tarde-e-noite-vitoria-21507",
+   "date": "2026-11-15",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 47,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
+    "kind": "icon"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 304600,
+   "name": "TREINOS ORLA DE CAMBURI - DOMINGO 15-11-2026 - MANHÃ",
+   "path": "20261115-treinos-orla-de-camburi-domingo-15-11-2026-manha-vitoria-15796",
+   "date": "2026-11-15",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 163402,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261115134119DOMINGO-MANHA.png",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 263835,
    "name": "CORRIDA LUZES DA CIDADE 2026 - VILA VELHA",
@@ -8,10 +50,24 @@
    "date": "2026-11-14",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 0,
+   "photos": 302836,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/logos/20261109131002263835.png",
     "kind": "logo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 304599,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - SÁBADO 14-11-2026 - TARDE E NOITE",
+   "path": "20261114-treinos-noturno-orla-de-camburi-sabado-14-11-2026-tarde-e-noite-vitoria-15796",
+   "date": "2026-11-14",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 11770,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261115005008SABADO-NOITE.png",
+    "kind": "photo"
    },
    "store": "bilate"
   },
@@ -22,7 +78,7 @@
    "date": "2026-11-14",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 476315,
+   "photos": 478439,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261114102904SABADO-MANHA.png",
     "kind": "photo"
@@ -78,7 +134,7 @@
    "date": "2026-11-11",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 5916,
+   "photos": 7460,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261109164406Baner-Entrega-de-kits.jpeg",
     "kind": "photo"
