@@ -1,6 +1,20 @@
 {
- "geradoEm": "2026-11-15T20:25:27.161Z",
+ "geradoEm": "2026-11-16T11:58:26.953Z",
  "eventos": [
+  {
+   "id": 300722,
+   "name": "TREINOS ORLA DE CAMBURI - SEGUNDA 16-11-2026 - MANHÃ",
+   "path": "20261116-treinos-orla-de-camburi-segunda-16-11-2026-manha-vitoria-21507",
+   "date": "2026-11-16",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 0,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
+    "kind": "icon"
+   },
+   "store": "bilate"
+  },
   {
    "id": 182736,
    "name": "CORRIDA DA MAIOR TORCIDA 2026 - VITÓRIA",
@@ -8,7 +22,7 @@
    "date": "2026-11-15",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 1163157,
+   "photos": 1195165,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/logos/20261109131041182736.png",
     "kind": "logo"
@@ -22,10 +36,10 @@
    "date": "2026-11-15",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 47,
+   "photos": 16926,
    "cover": {
-    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
-    "kind": "icon"
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261115194939Evento-Domingo.jpeg",
+    "kind": "photo"
    },
    "store": "bilate"
   },
@@ -36,7 +50,7 @@
    "date": "2026-11-15",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 163402,
+   "photos": 167002,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261115134119DOMINGO-MANHA.png",
     "kind": "photo"
