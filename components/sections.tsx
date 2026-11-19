@@ -1,9 +1,10 @@
 import { ArrowUpRight, Mail } from "lucide-react";
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { CONTACT, PHOTOGRAPHER, STORES, storeUrl } from "@/lib/site";
 import { InstagramIcon } from "./site-chrome";
 
-export function Hero() {
+export function Hero({ children }: { children?: ReactNode }) {
   return (
     <section className="relative isolate overflow-hidden bg-ink text-paper">
       <Image
@@ -15,16 +16,10 @@ export function Hero() {
         className="-z-10 object-cover object-[50%_60%]"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/50 to-ink/20" aria-hidden />
-      <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 pb-4 pt-10 sm:flex-row sm:items-end sm:justify-between sm:px-6 sm:pb-5 sm:pt-14 lg:px-10">
-        <div>
-          <p className="text-xs font-medium text-paper/85 sm:text-sm">
-            {PHOTOGRAPHER.name} · {PHOTOGRAPHER.city}
-          </p>
-          <h1 className="mt-1 font-display text-[clamp(2.5rem,8vw,4.75rem)] font-black uppercase leading-[0.85] tracking-tight text-yellow">
-            Ache suas fotos
-          </h1>
-        </div>
-        <p className="text-sm text-paper/90 sm:pb-1 sm:text-base">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 pb-4 pt-12 sm:px-6 sm:pb-5 sm:pt-20 lg:px-10">
+        <h1 className="sr-only">Ache suas fotos</h1>
+        {children}
+        <p className="text-sm text-paper/90 sm:text-base">
           Marque a gente no Instagram!{" "}
           <a
             href={`https://instagram.com/${CONTACT.instagram}`}

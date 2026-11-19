@@ -1,5 +1,6 @@
 import { EventFinder } from "@/components/event-finder";
 import { Hero } from "@/components/sections";
+import { SelfieSearch } from "@/components/selfie-search";
 import { getCatalog } from "@/lib/foco";
 import { pageMetadata, siteJsonLd } from "@/lib/seo";
 
@@ -21,7 +22,9 @@ export default async function EventsPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd()).replace(/</g, "\\u003c") }}
       />
-      <Hero />
+      <Hero>
+        <SelfieSearch />
+      </Hero>
       <EventFinder events={catalog.events} />
     </>
   );

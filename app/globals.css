@@ -7,6 +7,7 @@
   --color-graphite: oklch(0.44 0.014 100);
   --color-line: oklch(0.87 0.012 100);
   --color-dawn: oklch(0.74 0.16 62);
+  --color-alert: oklch(0.52 0.19 28);
 
   --font-display: var(--font-big-shoulders), "Arial Narrow", sans-serif;
   --font-sans: var(--font-archivo), system-ui, sans-serif;

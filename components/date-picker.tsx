@@ -26,15 +26,18 @@ const NAV_BUTTON =
 type Props = {
   value: string;
   onChange: (day: string) => void;
-  countByDate: Map<string, number>;
-  firstDay: string | null;
   today: string | null;
+  /** Sem o mapa, qualquer dia até hoje pode ser escolhido. */
+  countByDate?: Map<string, number>;
+  firstDay?: string | null;
+  clearable?: boolean;
 };
 
-export function DatePicker({ value, onChange, countByDate, firstDay, today }: Props) {
+export function DatePicker({ value, onChange, countByDate, firstDay, today, clearable = true }: Props) {
   const [open, setOpen] = useState(false);
   const selected = value ? isoToDate(value) : undefined;
-  const hasEvents = (date: Date) => countByDate.has(dateToIso(date));
+  const hasEvents = (date: Date) => countByDate?.has(dateToIso(date)) ?? false;
+  const todayDate = today ? isoToDate(today) : undefined;
 
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
@@ -53,13 +56,14 @@ export function DatePicker({ value, onChange, countByDate, firstDay, today }: Pr
             locale={ptBR}
             selected={selected}
             onSelect={(date) => {
+              if (!date && !clearable) return;
               onChange(date ? dateToIso(date) : "");
               setOpen(false);
             }}
-            defaultMonth={selected ?? (today ? isoToDate(today) : undefined)}
+            defaultMonth={selected ?? todayDate}
             startMonth={firstDay ? isoToDate(firstDay) : undefined}
-            endMonth={today ? isoToDate(today) : undefined}
-            disabled={(date) => !hasEvents(date)}
+            endMonth={todayDate}
+            disabled={countByDate ? (date) => !hasEvents(date) : todayDate ? { after: todayDate } : undefined}
             modifiers={{ comEvento: hasEvents }}
             modifiersClassNames={{
               comEvento:
@@ -98,7 +102,7 @@ export function DatePicker({ value, onChange, countByDate, firstDay, today }: Pr
               footer: "mt-2 border-t-2 border-ink/10 pt-2",
             }}
             footer={
-              value ? (
+              value && clearable ? (
                 <button
                   type="button"
                   onClick={() => {
