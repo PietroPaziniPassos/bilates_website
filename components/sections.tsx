@@ -1,7 +1,7 @@
 import { ArrowUpRight, Mail } from "lucide-react";
 import Image from "next/image";
 import type { ReactNode } from "react";
-import { CONTACT, PHOTOGRAPHER, STORES, storeUrl } from "@/lib/site";
+import { CONTACT, STORES, storeUrl } from "@/lib/site";
 import { InstagramIcon } from "./site-chrome";
 
 export function Hero({ children }: { children?: ReactNode }) {
@@ -38,7 +38,7 @@ export function Hero({ children }: { children?: ReactNode }) {
 const STEPS = [
   {
     title: "Ache o evento aqui",
-    body: "Na aba Eventos, filtre pelo dia em que você correu e toque no evento. Ele abre na loja do Marcos na Foco Radical, onde a compra acontece.",
+    body: "Na aba Eventos, filtre pelo dia em que você correu e toque no evento. Ele abre na Foco Radical, onde a compra acontece.",
   },
   {
     title: "Encontre suas fotos",
@@ -167,21 +167,8 @@ export function Contact() {
             id="contato-titulo"
             className="font-display text-[clamp(2.75rem,7vw,5rem)] font-black uppercase leading-[0.88]"
           >
-            Fale com o Marcos
+            Fale com a Bilates
           </h1>
-          <div className="mt-8 flex items-center gap-4">
-            <Image
-              src={PHOTOGRAPHER.photo}
-              alt={`Retrato de ${PHOTOGRAPHER.name}`}
-              width={88}
-              height={88}
-              className="size-22 rounded-full border-2 border-ink object-cover"
-            />
-            <div>
-              <p className="font-display text-2xl font-extrabold uppercase leading-tight">{PHOTOGRAPHER.name}</p>
-              <p className="text-sm">{PHOTOGRAPHER.bio}</p>
-            </div>
-          </div>
         </div>
 
         <ul className="flex flex-col gap-4 md:items-end">

@@ -18,8 +18,8 @@ export default function FeedbackPage() {
           Feedback das fotos
         </h1>
         <p className="mt-6 max-w-prose text-lg">
-          O formulário ainda está sendo preparado. Enquanto isso, mande sua opinião sobre as fotos direto para o
-          Marcos.
+          O formulário ainda está sendo preparado. Enquanto isso, mande sua opinião sobre as fotos direto pra
+          gente.
         </p>
         <ul className="mt-8 flex flex-col gap-3">
           <li>

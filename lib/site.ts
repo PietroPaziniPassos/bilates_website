@@ -1,7 +1,7 @@
 export const STORES = [
-  { key: "bilate", label: "Marcos Bilate", host: "bilate.focoradical.com.br" },
-  { key: "ppbi", label: "Pietro Bilate", host: "ppbi.focoradical.com.br" },
-  { key: "mblt", label: "Marcos Bilate 2", host: "mblt.focoradical.com.br" },
+  { key: "bilate", label: "Loja 1", host: "bilate.focoradical.com.br" },
+  { key: "ppbi", label: "Loja 2", host: "ppbi.focoradical.com.br" },
+  { key: "mblt", label: "Loja 3", host: "mblt.focoradical.com.br" },
 ] as const;
 
 export type StoreKey = (typeof STORES)[number]["key"];
@@ -27,10 +27,5 @@ export const CONTACT = {
   email: "bilatefotografia@gmail.com",
 };
 
-export const PHOTOGRAPHER = {
-  name: "Marcos Bilate",
-  city: "Vitória, ES",
-  bio: "Fotógrafo, biólogo e herpetólogo. Nove prêmios internacionais.",
-  photo:
-    "https://cdn.focoradical.com.br/newfoco/user-store-photos/2026-04-29-20b46c4130d69f8ef873ec4a02a3baecb5623c92.jpg",
-};
+// Só no JSON-LD: a interface não mostra o nome do fotógrafo (pedido do Pietro, 2026-11-19).
+export const PHOTOGRAPHER = { name: "Marcos Bilate" };
