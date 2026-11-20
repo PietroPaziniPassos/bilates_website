@@ -1,6 +1,48 @@
 {
- "geradoEm": "2026-11-19T22:41:11.669Z",
+ "geradoEm": "2026-11-20T22:15:38.174Z",
  "eventos": [
+  {
+   "id": 307625,
+   "name": "TREINOS ORLA DE CAMBURI - SEXTA 20-11-2026 - MANHÃ (FERIADO)",
+   "path": "20261120-treinos-orla-de-camburi-sexta-20-11-2026-manha-feriado-vitoria-15796",
+   "date": "2026-11-20",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 344366,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261120133518SEXTA-MANHA.jpg",
+    "kind": "photo"
+   },
+   "store": "ppbi"
+  },
+  {
+   "id": 303521,
+   "name": "XVIII CORRIDA ZUMBI DOS PALMARES 2026 - VITÓRIA",
+   "path": "20261120-xviii-corrida-zumbi-dos-palmares-2026-vitoria-vitoria-17215",
+   "date": "2026-11-20",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 289598,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/logos/20261118140450b6fc940e-logo-303521.png",
+    "kind": "logo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 307624,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - QUINTA 19-11-2026 - TARDE E NOITE",
+   "path": "20261119-treinos-noturno-orla-de-camburi-quinta-19-11-2026-tarde-e-noite-vitoria-15796",
+   "date": "2026-11-19",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 36091,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261119221004QUINTA-NOITE.jpg",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 307623,
    "name": "TREINOS ORLA DE CAMBURI - QUINTA 19-11-2026 - MANHÃ",
