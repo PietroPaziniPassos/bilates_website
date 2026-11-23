@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-11-22T21:05:41.070Z",
+ "geradoEm": "2026-11-23T13:33:18.502Z",
  "eventos": [
   {
    "id": 295746,
@@ -22,7 +22,7 @@
    "date": "2026-11-22",
    "city": "Vila Velha",
    "uf": "ES",
-   "photos": 273051,
+   "photos": 274570,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/logos/202611181354562a56bfef-logo-223401.png",
     "kind": "logo"
@@ -36,10 +36,10 @@
    "date": "2026-11-22",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 350910,
+   "photos": 358125,
    "cover": {
-    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
-    "kind": "icon"
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261122202232DOMINGO-MANHA.jpg",
+    "kind": "photo"
    },
    "store": "bilate"
   },
