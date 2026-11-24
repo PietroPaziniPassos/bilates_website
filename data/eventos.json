@@ -1,6 +1,34 @@
 {
- "geradoEm": "2026-11-23T13:33:18.502Z",
+ "geradoEm": "2026-11-24T14:43:33.270Z",
  "eventos": [
+  {
+   "id": 310481,
+   "name": "TREINOS ORLA DE CAMBURI - TERÇA 24-11-2026 - MANHÃ",
+   "path": "20261124-treinos-orla-de-camburi-terca-24-11-2026-manha-vitoria-15796",
+   "date": "2026-11-24",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 105862,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261124111908IMG2010.jpeg",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 310558,
+   "name": "WORKSHOP FOCO NO FOTÓGRAFO - EDIÇÃO VITORIA",
+   "path": "20261123-workshop-foco-no-fotografo-edicao-vitoria-vitoria-31866",
+   "date": "2026-11-23",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 191,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/logos/20261123142557LOGO-NOVA-FOCRADICAL.png",
+    "kind": "logo"
+   },
+   "store": "fotosby"
+  },
   {
    "id": 295746,
    "name": "CORRIDA E CAMINHADA PELO DIABETES - VITÓRIA",
