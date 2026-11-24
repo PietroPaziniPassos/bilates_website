@@ -2,12 +2,14 @@ export const STORES = [
   { key: "bilate", label: "Loja 1", host: "bilate.focoradical.com.br" },
   { key: "ppbi", label: "Loja 2", host: "ppbi.focoradical.com.br" },
   { key: "mblt", label: "Loja 3", host: "mblt.focoradical.com.br" },
+  // Plataforma parceira da Foco: mesmo backend e mesmo endpoint, catálogo próprio.
+  { key: "fotosby", label: "Loja 4", host: "mbid.fotosby.com.br" },
 ] as const;
 
 export type StoreKey = (typeof STORES)[number]["key"];
 
 // Evento que aparece em mais de uma loja abre na primeira desta lista que o tiver.
-export const EVENT_STORE_PRIORITY: StoreKey[] = ["ppbi", "mblt", "bilate"];
+export const EVENT_STORE_PRIORITY: StoreKey[] = ["ppbi", "mblt", "bilate", "fotosby"];
 
 export const STORE_BY_KEY = Object.fromEntries(STORES.map((s) => [s.key, s])) as Record<
   StoreKey,

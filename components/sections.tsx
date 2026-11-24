@@ -127,7 +127,7 @@ export function Stores() {
           As lojas na Foco Radical
         </h2>
         <p className="mt-3 max-w-xl text-graphite">
-          A aba Eventos junta estas três lojas. Se preferir, navegue direto por elas.
+          A aba Eventos junta estas lojas. Se preferir, navegue direto por elas.
         </p>
         <ul className="mt-8 border-t-2 border-ink">
           {STORES.map((store) => (
