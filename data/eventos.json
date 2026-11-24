@@ -1,5 +1,5 @@
 {
- "geradoEm": "2026-11-24T14:43:33.270Z",
+ "geradoEm": "2026-11-24T23:56:11.137Z",
  "eventos": [
   {
    "id": 310481,
@@ -8,7 +8,7 @@
    "date": "2026-11-24",
    "city": "Vitória",
    "uf": "ES",
-   "photos": 105862,
+   "photos": 193301,
    "cover": {
     "url": "https://cdn.focoradical.com.br/newfoco/banners/20261124111908IMG2010.jpeg",
     "kind": "photo"
@@ -24,8 +24,8 @@
    "uf": "ES",
    "photos": 191,
    "cover": {
-    "url": "https://cdn.focoradical.com.br/newfoco/logos/20261123142557LOGO-NOVA-FOCRADICAL.png",
-    "kind": "logo"
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261124114925Edio-Vitria.png",
+    "kind": "photo"
    },
    "store": "fotosby"
   },
