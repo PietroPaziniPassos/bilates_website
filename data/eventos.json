@@ -1,6 +1,34 @@
 {
- "geradoEm": "2026-11-25T23:40:30.763Z",
+ "geradoEm": "2026-11-26T23:53:35.638Z",
  "eventos": [
+  {
+   "id": 310487,
+   "name": "TREINOS ORLA DE CAMBURI - QUINTA 26-11-2026 - MANHÃ",
+   "path": "20261126-treinos-orla-de-camburi-quinta-26-11-2026-manha-vitoria-15796",
+   "date": "2026-11-26",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 151059,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/competitioncontracts/20240807161334Treinos.svg",
+    "kind": "icon"
+   },
+   "store": "bilate"
+  },
+  {
+   "id": 310485,
+   "name": "TREINOS NOTURNO ORLA DE CAMBURI - QUARTA 25-11-2026 - TARDE E NOITE",
+   "path": "20261125-treinos-noturno-orla-de-camburi-quarta-25-11-2026-tarde-e-noite-vitoria-15796",
+   "date": "2026-11-25",
+   "city": "Vitória",
+   "uf": "ES",
+   "photos": 40785,
+   "cover": {
+    "url": "https://cdn.focoradical.com.br/newfoco/banners/20261125234127QUARTA-NOITE.jpg",
+    "kind": "photo"
+   },
+   "store": "bilate"
+  },
   {
    "id": 310484,
    "name": "TREINOS ORLA DE CAMBURI - QUARTA 25-11-2026 - MANHÃ",
