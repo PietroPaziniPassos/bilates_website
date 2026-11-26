@@ -1,37 +1,26 @@
 import { ArrowUpRight, Mail } from "lucide-react";
-import Image from "next/image";
 import type { ReactNode } from "react";
 import { CONTACT, STORES, storeUrl } from "@/lib/site";
 import { InstagramIcon } from "./site-chrome";
 
-export function Hero({ children }: { children?: ReactNode }) {
+export function SelfieBand({ children }: { children?: ReactNode }) {
   return (
-    <section className="relative isolate overflow-hidden bg-ink text-paper">
-      <Image
-        src="/orla-de-camburi.jpg"
-        alt="Nascer do sol entre os coqueiros da Orla de Camburi, em Vitória"
-        fill
-        priority
-        sizes="100vw"
-        className="-z-10 object-cover object-[50%_60%]"
-      />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink/90 via-ink/50 to-ink/20" aria-hidden />
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 pb-4 pt-12 sm:px-6 sm:pb-5 sm:pt-20 lg:px-10">
-        <h1 className="sr-only">Ache suas fotos</h1>
+    <div className="text-ink">
+      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 sm:px-6 sm:py-8 lg:px-10">
         {children}
-        <p className="text-sm text-paper/90 sm:text-base">
+        <p className="text-sm text-graphite sm:text-base">
           Marque a gente no Instagram!{" "}
           <a
             href={`https://instagram.com/${CONTACT.instagram}`}
             target="_blank"
             rel="noopener"
-            className="font-semibold text-yellow underline decoration-yellow/40 decoration-2 underline-offset-4 hover:decoration-yellow"
+            className="font-semibold text-ink underline decoration-yellow decoration-2 underline-offset-4 hover:decoration-ink"
           >
             @{CONTACT.instagram}
           </a>
         </p>
       </div>
-    </section>
+    </div>
   );
 }
 

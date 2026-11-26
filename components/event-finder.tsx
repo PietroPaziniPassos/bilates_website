@@ -1,7 +1,7 @@
 "use client";
 
 import { Search, X } from "lucide-react";
-import { useDeferredValue, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { type ReactNode, useDeferredValue, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { addDays, dayParts, fullDateLabel, monthLabel, todayInBrazil } from "@/lib/dates";
 import type { FocoEvent } from "@/lib/foco";
 import { DatePicker } from "./date-picker";
@@ -23,7 +23,7 @@ function normalize(text: string) {
   return text.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 }
 
-export function EventFinder({ events }: { events: FocoEvent[] }) {
+export function EventFinder({ events, children }: { events: FocoEvent[]; children?: ReactNode }) {
   const today = useToday();
   const [query, setQuery] = useState("");
   const [place, setPlace] = useState("");
@@ -215,6 +215,8 @@ export function EventFinder({ events }: { events: FocoEvent[] }) {
           </div>
         </div>
       </div>
+
+      {children}
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
         <p className="sr-only" aria-live="polite">

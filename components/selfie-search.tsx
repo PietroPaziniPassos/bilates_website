@@ -76,7 +76,7 @@ export function SelfieSearch() {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((o) => !o)}
-        className="group flex w-full items-center gap-4 rounded-md border-2 border-yellow bg-yellow px-4 py-4 text-left text-ink shadow-[6px_6px_0_var(--color-ink)] transition-[background-color,color,box-shadow,translate] duration-150 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_var(--color-ink)] focus-visible:outline-yellow active:translate-y-0 aria-expanded:bg-ink aria-expanded:text-yellow aria-expanded:shadow-none sm:w-fit sm:gap-5 sm:px-6 sm:py-5"
+        className="group flex w-full items-center gap-4 rounded-md border-2 border-ink bg-yellow px-4 py-4 text-left text-ink shadow-[6px_6px_0_var(--color-ink)] transition-[background-color,color,box-shadow,translate] duration-150 hover:-translate-y-0.5 hover:shadow-[8px_8px_0_var(--color-ink)] active:translate-y-0 aria-expanded:bg-ink aria-expanded:text-yellow aria-expanded:shadow-none sm:w-fit sm:gap-5 sm:px-6 sm:py-5"
       >
         <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-ink text-yellow group-aria-expanded:bg-yellow group-aria-expanded:text-ink sm:size-16">
           <ScanFace className="size-7 sm:size-9" aria-hidden />
